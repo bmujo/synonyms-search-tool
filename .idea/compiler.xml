@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="synonyms-search-tool.core.ui.test" target="17" />
+      <module name="synonyms-search-tool.feature.synonyms.test" target="17" />
+      <module name="synonyms-search-tool.feature.test" target="21" />
+      <module name="sysnonyms-search-tool.app" target="21" />
+      <module name="sysnonyms-search-tool.core.model" target="11" />
+      <module name="sysnonyms-search-tool.core.model.main" target="11" />
+      <module name="sysnonyms-search-tool.core.model.test" target="11" />
+      <module name="sysnonyms-search-tool.core.ui" target="11" />
+      <module name="sysnonyms-search-tool.core.ui.main" target="11" />
+      <module name="sysnonyms-search-tool.core.ui.test" target="11" />
+      <module name="sysnonyms-search-tool.feature.synonyms" target="11" />
+      <module name="sysnonyms-search-tool.feature.synonyms.main" target="11" />
+      <module name="sysnonyms-search-tool.feature.synonyms.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
