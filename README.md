@@ -31,10 +31,10 @@
 
 The app follows a modular clean architecture:
 
-app
-├── core:model // Shared data models (Word, etc.)
-├── core:ui // Reusable Compose components and theme
-└── feature:synonyms // Synonym business logic and screens
+app  
+├── core:model // Shared data models (Word, etc.)  
+├── core:ui // Reusable Compose components and theme  
+└── feature:synonyms // Synonym business logic and screens  
 
 
 ### Module Dependencies
