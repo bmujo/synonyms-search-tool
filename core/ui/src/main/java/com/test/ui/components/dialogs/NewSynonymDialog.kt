@@ -14,6 +14,7 @@ fun NewSynonymDialog(
     onValueChange: (String) -> Unit,
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
+    errorMessage: String? = null
 ) {
     AlertDialog(
         containerColor = MaterialTheme.colorScheme.secondary,
@@ -23,7 +24,9 @@ fun NewSynonymDialog(
             CustomInput(
                 value = value,
                 onValueChange = onValueChange,
-                placeholder = "Enter new synonym"
+                placeholder = "Enter new synonym",
+                isError = errorMessage != null,
+                errorMessage = errorMessage,
             )
         },
         confirmButton = {

@@ -1,5 +1,6 @@
 package com.test.ui.components.inputs
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -28,47 +29,59 @@ fun CustomInput(
     keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
     maxLength: Int? = null,
     showSearchIcon: Boolean = false,
-    onSearchClick: (() -> Unit)? = null
+    onSearchClick: (() -> Unit)? = null,
+    isError: Boolean = false,
+    errorMessage: String? = null
 ) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        OutlinedTextField(
-            value = value,
-            onValueChange = { newValue ->
-                if (maxLength == null || newValue.length <= maxLength) {
-                    onValueChange(newValue)
-                }
-            },
-            placeholder = {
-                Text(text = placeholder)
-            },
+    Column(modifier = modifier) {
+        Row(
             modifier = Modifier
-                .weight(1f)
-                .padding(end = if (showSearchIcon) 8.dp else 0.dp),
-            shape = RoundedCornerShape(12.dp),
-            colors = TextFieldDefaults.colors().copy(
-                focusedContainerColor = MaterialTheme.colorScheme.primary,
-                unfocusedContainerColor = MaterialTheme.colorScheme.primary,
-                focusedTextColor = MaterialTheme.colorScheme.onPrimary,
-                unfocusedTextColor = MaterialTheme.colorScheme.onPrimary,
-                focusedPlaceholderColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6f),
-                unfocusedPlaceholderColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6f),
-                focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-                unfocusedIndicatorColor = MaterialTheme.colorScheme.secondary,
-                cursorColor = MaterialTheme.colorScheme.onPrimary,
-            ),
-            singleLine = true,
-            keyboardOptions = keyboardOptions
-        )
+                .fillMaxWidth()
+                .padding(vertical = 4.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            OutlinedTextField(
+                value = value,
+                onValueChange = { newValue ->
+                    if (maxLength == null || newValue.length <= maxLength) {
+                        onValueChange(newValue)
+                    }
+                },
+                placeholder = { Text(text = placeholder) },
+                isError = isError,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = if (showSearchIcon) 8.dp else 0.dp),
+                shape = RoundedCornerShape(12.dp),
+                colors = TextFieldDefaults.colors().copy(
+                    focusedContainerColor = MaterialTheme.colorScheme.primary,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.primary,
+                    focusedTextColor = MaterialTheme.colorScheme.onPrimary,
+                    unfocusedTextColor = MaterialTheme.colorScheme.onPrimary,
+                    focusedPlaceholderColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6f),
+                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6f),
+                    focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+                    unfocusedIndicatorColor = MaterialTheme.colorScheme.secondary,
+                    cursorColor = MaterialTheme.colorScheme.onPrimary,
+                ),
+                singleLine = true,
+                keyboardOptions = keyboardOptions
+            )
 
-        if (showSearchIcon && onSearchClick != null) {
-            CustomIconButton(
-                icon = Icons.Default.Search,
-                onClick = onSearchClick
+            if (showSearchIcon && onSearchClick != null) {
+                CustomIconButton(
+                    icon = Icons.Default.Search,
+                    onClick = onSearchClick
+                )
+            }
+        }
+
+        if (isError && errorMessage != null) {
+            Text(
+                text = errorMessage,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.error,
+                modifier = Modifier.padding(start = 8.dp, top = 2.dp)
             )
         }
     }

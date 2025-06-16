@@ -25,9 +25,16 @@ class AddSynonymViewModel @Inject constructor(
     private val _selectedWords = MutableStateFlow<Set<Word>>(emptySet())
     val selectedWords: StateFlow<Set<Word>> = _selectedWords
 
+    private var firstEnter = false
+
     fun onWordChange(newWord: String) {
         _word.value = newWord
-        refreshAllWords()
+        if (firstEnter) {
+            refreshSortedWords()
+        } else {
+            refreshAllWords()
+            firstEnter = true
+        }
     }
 
     fun toggleSynonym(word: Word) {
@@ -59,14 +66,12 @@ class AddSynonymViewModel @Inject constructor(
     private fun refreshAllWords() {
         val all = synonymRepository.getAllWords()
         _allWords.value = all
-        _sortedWords.value = all.sortedWith(
-            compareByDescending<Word> { _selectedWords.value.contains(it) }.thenBy { it.value }
-        )
+        _sortedWords.value =
+            all.sortedWith(compareByDescending<Word> { _selectedWords.value.contains(it) }.thenBy { it.value })
     }
 
     private fun refreshSortedWords() {
-        _sortedWords.value = _allWords.value.sortedWith(
-            compareByDescending<Word> { _selectedWords.value.contains(it) }.thenBy { it.value }
-        )
+        _sortedWords.value =
+            _allWords.value.sortedWith(compareByDescending<Word> { _selectedWords.value.contains(it) }.thenBy { it.value })
     }
 }

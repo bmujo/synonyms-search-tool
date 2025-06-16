@@ -80,6 +80,9 @@ private fun AddSynonymContent(
     var showDialog by remember { mutableStateOf(false) }
     var newSynonymInput by remember { mutableStateOf("") }
 
+    var newWordError by remember { mutableStateOf<String?>(null) }
+    var newSynonymError by remember { mutableStateOf<String?>(null) }
+
     Scaffold(
         topBar = {
             CustomHeader(title = "Add New Word", onNavigateBack = onNavigateBack)
@@ -93,7 +96,16 @@ private fun AddSynonymContent(
                 CustomButton(
                     text = "Save",
                     onClick = {
-                        onSaveClick()
+                        val trimmed = word.trim()
+                        newWordError = when {
+                            trimmed.isEmpty() -> "Word cannot be empty"
+                            trimmed.length < 2 -> "Word must be at least 2 characters"
+                            else -> null
+                        }
+
+                        if (newWordError == null) {
+                            onSaveClick()
+                        }
                     }
                 )
             }
@@ -106,8 +118,13 @@ private fun AddSynonymContent(
         ) {
             CustomInput(
                 value = word,
-                onValueChange = onWordChange,
+                onValueChange = {
+                    onWordChange(it)
+                    newWordError = null
+                },
                 placeholder = "Enter new word",
+                isError = newWordError != null,
+                errorMessage = newWordError,
                 modifier = Modifier.padding(16.dp)
             )
 
@@ -167,7 +184,8 @@ private fun AddSynonymContent(
                     CustomButton(
                         text = "Add New Synonym",
                         onClick = { showDialog = true },
-                        type = ButtonType.Secondary
+                        type = ButtonType.Secondary,
+                        enabled = sortedWords.isNotEmpty()
                     )
                 }
             }
@@ -180,13 +198,24 @@ private fun AddSynonymContent(
                     newSynonymInput = it
                 },
                 onConfirm = {
-                    onDialogConfirm(newSynonymInput)
-                    showDialog = false
+                    val trimmed = newSynonymInput.trim()
+                    newSynonymError = when {
+                        trimmed.isEmpty() -> "Input cannot be empty"
+                        trimmed.length < 2 -> "Must be at least 2 characters"
+                        else -> null
+                    }
+
+                    if (newSynonymError == null) {
+                        onDialogConfirm(trimmed)
+                        showDialog = false
+                        newSynonymInput = ""
+                    }
                 },
                 onDismiss = {
                     showDialog = false
                     newSynonymInput = ""
-                }
+                },
+                errorMessage = newSynonymError
             )
         }
     }
