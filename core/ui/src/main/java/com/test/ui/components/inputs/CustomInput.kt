@@ -19,6 +19,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.test.ui.components.buttons.CustomIconButton
 import com.test.ui.preview.SynonymsSearchToolPreview
+import com.test.ui.theme.SolidBlack
+import com.test.ui.theme.SolidWhite
+import com.test.ui.theme.TertiaryBlue
 
 @Composable
 fun CustomInput(
@@ -54,15 +57,15 @@ fun CustomInput(
                     .padding(end = if (showSearchIcon) 8.dp else 0.dp),
                 shape = RoundedCornerShape(12.dp),
                 colors = TextFieldDefaults.colors().copy(
-                    focusedContainerColor = MaterialTheme.colorScheme.primary,
-                    unfocusedContainerColor = MaterialTheme.colorScheme.primary,
-                    focusedTextColor = MaterialTheme.colorScheme.onPrimary,
-                    unfocusedTextColor = MaterialTheme.colorScheme.onPrimary,
-                    focusedPlaceholderColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6f),
-                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6f),
-                    focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-                    unfocusedIndicatorColor = MaterialTheme.colorScheme.secondary,
-                    cursorColor = MaterialTheme.colorScheme.onPrimary,
+                    focusedContainerColor = TertiaryBlue,
+                    unfocusedContainerColor = TertiaryBlue,
+                    focusedTextColor = SolidBlack,
+                    unfocusedTextColor =SolidBlack,
+                    focusedPlaceholderColor = SolidBlack.copy(alpha = 0.6f),
+                    unfocusedPlaceholderColor = SolidBlack.copy(alpha = 0.6f),
+                    focusedIndicatorColor = TertiaryBlue,
+                    unfocusedIndicatorColor = SolidWhite,
+                    cursorColor = SolidBlack,
                 ),
                 singleLine = true,
                 keyboardOptions = keyboardOptions

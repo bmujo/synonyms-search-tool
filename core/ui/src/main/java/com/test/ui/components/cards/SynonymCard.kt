@@ -33,7 +33,8 @@ fun SynonymCard(
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = word.uppercase(),
-                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
+                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+                color = SolidBlack
             )
             HorizontalDivider(
                 modifier = Modifier.padding(vertical = 16.dp),
@@ -41,12 +42,14 @@ fun SynonymCard(
             )
             Text(
                 text = "Synonyms",
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
+                color = SolidBlack
             )
             Spacer(modifier = Modifier.height(24.dp))
             Text(
                 text = synonyms.joinToString(", ") { it.value },
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                color = SolidBlack
             )
         }
     }

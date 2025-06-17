@@ -42,6 +42,7 @@ import com.test.ui.components.headers.CustomHeader
 import com.test.ui.components.inputs.CustomInput
 import com.test.ui.preview.SynonymsSearchToolPreview
 import com.test.ui.theme.SecondaryBlue
+import com.test.ui.theme.TertiaryBlue
 
 @Composable
 fun AddSynonymScreen(
@@ -131,14 +132,18 @@ private fun AddSynonymContent(
             Card(
                 shape = RoundedCornerShape(16.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
+                colors = CardDefaults.cardColors(containerColor = TertiaryBlue),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
                     .weight(1f)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    Text("Select synonyms:", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        "Select synonyms:",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.Black
+                    )
 
                     Spacer(modifier = Modifier.height(8.dp))
 
@@ -150,7 +155,7 @@ private fun AddSynonymContent(
                             val backgroundColor =
                                 if (isSelected) SecondaryBlue else Color.Transparent
                             val contentColor =
-                                if (isSelected) Color.White else MaterialTheme.colorScheme.onSurface
+                                if (isSelected) Color.White else Color.Black
 
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
@@ -167,7 +172,7 @@ private fun AddSynonymContent(
                                     colors = CheckboxDefaults.colors(
                                         checkedColor = Color.White,
                                         checkmarkColor = backgroundColor,
-                                        uncheckedColor = MaterialTheme.colorScheme.onSurface
+                                        uncheckedColor = Color.Black
                                     )
                                 )
                                 Text(
