@@ -57,6 +57,7 @@ class SynonymRepositoryImpl : SynonymRepository {
                 setB.add(wordA)
                 map[wordA] = setB
             }
+            // Ensures transitive synonym logic
             setA != null && setB != null && setA !== setB -> {
                 setA.addAll(setB)
                 for (word in setB) {
