@@ -1,6 +1,9 @@
 # Synonyms Search Tool
 
+
 ![Screenshot 1](screenshots/screen_all.png)
+
+![Test](https://github.com/bmujo/synonyms-search-tool/actions/workflows/test.yml/badge.svg)
 
 ## Overview
 
@@ -62,6 +65,16 @@ app
 2. Open in Android Studio (Giraffe or newer)
 
 3. Run the app on device/emulator (API 26+)
+
+---
+
+## Running Unit Tests
+
+To run unit tests for the `SynonymRepository`:
+
+```bash
+./gradlew :feature:synonyms:test
+```
 
 ---
 
